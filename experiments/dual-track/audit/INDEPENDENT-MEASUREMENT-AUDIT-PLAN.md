@@ -26,7 +26,11 @@ Which test design produces more valid, traceable, uncertainty-preserving, reprod
 8. Human Authority: no track, runner, or report self-approves or self-certifies.
 
 ## Decision rule
-Do not choose a winner based on raw FAIL count. Compare traceability defects, exercised coverage, false-success detection, uncertainty preservation, and independent reproducibility. Track B's ten proposed additions must be reported as a separate denominator.
+Do not choose a winner based on raw FAIL count. Compare traceability defects, exercised coverage, false-success detection, uncertainty preservation, and independent reproducibility. Track B's ten amendment-derived formalizations must be reported as a separate denominator; do not describe them as newly invented because R003 already cites them.
+
+## Harness-execution audit dimension
+
+The audit must distinguish behavioral execution from table parsing. Each row must state one execution mode: `BEHAVIORAL_EXECUTION` (method actually invoked, raw input/output captured), `SOURCE_INSPECTION` (source/API inspected without runtime call), `TABLE_DERIVATION` (status/count derived by walking table cells), or `BLOCKED` (valid execution prevented by environment). A table loop, parsed row, or generated test label does not prove implementation execution. For every claimed behavioral test, require method name, pinned source revision/hash, input fixture, invocation trace/counter, raw response/exception, timestamp/runtime/dependencies, and status-to-criterion rationale. Missing invocation evidence is a measurement-system defect even if counts match.
 
 ## Execution gate
 The current baseline runner has only three explicit behavioral probes and routes most matrix rows to NOT_MEASURED. It cannot be treated as a 32-test behavioral executor. Before claiming the planned comparison, implement or independently provide test procedures for each row, preserving a NOT_MEASURED outcome where a behavior cannot be exercised.
