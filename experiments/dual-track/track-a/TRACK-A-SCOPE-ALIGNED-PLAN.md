@@ -14,17 +14,17 @@ The frozen specification, frozen matrix, and primordial rule are not edited. The
 ## Scope rule
 1. The baseline population is exactly the 32 rows in the pinned matrix.
 2. Every test must trace to one of the frozen requirement IDs or invariant IDs already named by the matrix.
-3. Any row appearing in the R003 amendment but lacking a traceable match to the frozen 32-row population is excluded from Track A's conformance count and recorded as a scope discrepancy; it is not silently deleted from the source artifact.
+3. The ten rows cited by R003 but absent from the frozen matrix are excluded from Track A's frozen-scope denominator and recorded as amendment-derived scope. They are not described as nonexistent.
 4. Missing interfaces are NOT_MEASURED unless the observed API behavior itself violates an explicit acceptance criterion. Unsupported affirmative claims such as verified, authenticated, SUCCESS, or IN_SYNC are FAIL only where the applicable requirement prohibits that claim without supporting evidence.
 5. Harness/environment failure is BLOCKED, not a product FAIL.
 
 ## R003 artifact inventory status
-The frozen repository at the base commit contains the specification, the 32-row matrix, and the primordial rule. It does not contain an artifact named R003 or a ten-row amendment table. Therefore this branch does not pretend to have made a line-for-line correction of an unseen R003 file. Before classifying any specific R003 rows, add the exact R003 artifact and its hash to the inventory. Until then, Track A's baseline population is defined by the pinned 32-row matrix only.
+R003 is a separate amendment artifact on branch `amendment-001-r002`, commit `ea31e0b751702d5412f9fb705e1323a12068a53e`, blob `19b37de08a6a4a55893b2a0dc154044e985b93bc`. Its 42-row normative table includes all 32 frozen matrix IDs plus ten amendment-derived IDs. The frozen `Python-3` commit does not contain R003; that is a branch/provenance distinction, not evidence that R003 does not exist. The inventory and harness audit checklist records the exact ten-row set difference. Track A uses only the pinned frozen 32-row matrix as its conformance denominator.
 
 ## Required outputs
 - Per-row observed status and evidence pointer.
 - Requirement-to-test traceability table.
-- Explicit inventory of R003-only rows once the artifact is supplied.
+- Explicit inventory of the ten R003-only rows and their amendment provenance.
 - Counts by status, with denominator and test population stated.
 - Independent reproduction status, initially NOT_MEASURED.
 
