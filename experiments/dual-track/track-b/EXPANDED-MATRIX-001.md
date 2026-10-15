@@ -43,25 +43,25 @@ Every test is linked to a requirement ID. Expected outcomes are taken directly f
 | T-INV-10 | INV-10 | CROSS | Implementation under test | Implementation declares own independent verification | Recorded as self-attestation only; independent status = NOT_MEASURED | Self-attestation log | NOT_MEASURED |
 
 
-## Track B — Proposed Additional Requirement Tests (Not Part of Frozen 32)
+## Track B — Ten R003-Cited Tests Formalized for Execution (Not Part of Frozen 32)
 
-The following ten rows belong only to the expanded experimental scope. They must be counted separately from the frozen baseline rows.
+The following ten rows correspond exactly to the ten IDs already present in R003's normative territory table but absent from the frozen 32-row matrix. They are amendment-derived formalizations, not invented requirements. Count them separately from the frozen baseline.
 
 | Test ID | Requirement ID | Protocol | Setup | Adversarial Injection | Expected Outcome | Evidence Artifact | Status |
-|---------|---------------|----------|-------|-----------------------|------------------|-------------------|--------|
-| T-XINV-001 | FED-XINV-001-R001 | CROSS-EXPANDED | Requirement-specific preconditions | Attempt self-authorization/self-ratification using caller-controlled flags or internal status mutation. | Refuse or make the unauthorized transition architecturally impossible; preserve a refusal record. | Raw request/response + trace + supporting record references | NOT_MEASURED |
-| T-XINV-002 | FED-XINV-001-R002 | CROSS-EXPANDED | Requirement-specific preconditions | Propose a decision that claims to create or elevate Human Authority and obtain all available votes. | Agreement may be recorded, but Human Authority remains external and unchanged. | Raw request/response + trace + supporting record references | NOT_MEASURED |
-| T-XINV-003 | FED-XINV-001-R003 | CROSS-EXPANDED | Requirement-specific preconditions | Sign a false claim with a valid test key and submit it as truth evidence. | Signature validity and claim-truth status remain separate; truth is not promoted by signature. | Raw request/response + trace + supporting record references | NOT_MEASURED |
-| T-XINV-004 | FED-XINV-001-R004 | CROSS-EXPANDED | Requirement-specific preconditions | Submit unanimous agreement on a claim lacking domain-specific evidence. | Agreement is recorded separately; truth/evidence sufficiency remains unresolved. | Raw request/response + trace + supporting record references | NOT_MEASURED |
-| T-XINV-005 | FED-XINV-001-R005 | CROSS-EXPANDED | Requirement-specific preconditions | Replace, erase, or truncate committed events while attempting to preserve an apparently valid history. | Detect discrepancy against independently retained checkpoints/witnesses, or explicitly record the limit if no witness exists. | Raw request/response + trace + supporting record references | NOT_MEASURED |
-| T-XINV-006 | FED-XINV-001-R006 | CROSS-EXPANDED | Requirement-specific preconditions | Attempt to promote one state into another without its own required evidence and decision procedure. | Reject the unsupported promotion; retain each status independently. | Raw request/response + trace + supporting record references | NOT_MEASURED |
-| T-XINV-007 | FED-XINV-001-R007 | CROSS-EXPANDED | Requirement-specific preconditions | Attempt an unversioned state change from NOT_MEASURED/FAILED to SUCCESS. | Reject or create a versioned, provenance-bearing transition supported by new evidence. | Raw request/response + trace + supporting record references | NOT_MEASURED |
-| T-XINV-008 | FED-XINV-001-R008 | CROSS-EXPANDED | Requirement-specific preconditions | Use a qualified component as the sole basis for a system-level qualification claim. | System-level qualification remains separate until its own criteria and evidence are satisfied. | Raw request/response + trace + supporting record references | NOT_MEASURED |
-| T-XINV-009 | FED-XINV-001-R009 | CROSS-EXPANDED | Requirement-specific preconditions | Submit an authorization lacking required scope, validity, or applicable identity/permission evidence. | Reject or constrain the authorization; record the unmet condition. | Raw request/response + trace + supporting record references | NOT_MEASURED |
-| T-XINV-010 | FED-XINV-001-R010 | CROSS-EXPANDED | Requirement-specific preconditions | Have the implementation declare itself independently verified without independent evidence. | Record as self-attestation only; independent verification remains NOT_MEASURED. | Raw request/response + trace + supporting record references | NOT_MEASURED |
+|---|---|---|---|---|---|---|---|
+| T-AUTH-008 | FED-AUTH-001-R008 | AUTH | Authentication interface available | Empty, malformed, valid, mismatched, and absent authentication material | Reject invalid/absent material; invariant success across inputs is FAIL | Raw input/output set + invocation trace + source hash | NOT_MEASURED |
+| T-AGREE-006 | FED-AGREE-001-R006 | AGREE | Quorum configuration and agreement interface available | Below-quorum participant/vote set | No final agreement below quorum; no covering interface/claim is NOT_MEASURED | Membership/quorum configuration + raw output + trace | NOT_MEASURED |
+| T-AGREE-007 | FED-AGREE-001-R007 | AGREE | Finality rule and agreement interface available | Request finality before required conditions are satisfied | Do not claim finality prematurely; absent claim is NOT_MEASURED | Proposal state + finality conditions + raw output | NOT_MEASURED |
+| T-AGREE-008 | FED-AGREE-001-R008 | AGREE | Quorum rule and agreement interface available | Empty, duplicate, unregistered, or below-quorum participants | Do not report successful consensus below quorum | Participant set + quorum config + raw output | NOT_MEASURED |
+| T-EVID-005 | FED-EVID-001-R005 | EVID | Evidence integrity interface available | Altered/malformed artifact or mismatched digest | Detect mismatch; no integrity claim without actual check | Artifact bytes/digests + raw output + trace | NOT_MEASURED |
+| T-EVID-006 | FED-EVID-001-R006 | EVID | Evidence state/update interface available | Attempt silent transition from FAILED/NOT_MEASURED to SUCCESS | Preserve state or require versioned evidence-backed transition | Before/after state + transition log | NOT_MEASURED |
+| T-EVID-007 | FED-EVID-001-R007 | EVID | Evidence registration interface available | Missing, malformed, and supplied provenance | Do not claim provenance/independence unsupported by record | Submitted provenance + stored record + raw output | NOT_MEASURED |
+| T-EVID-008 | FED-EVID-001-R008 | EVID | Evidence integrity/update interface available | Alter evidence after verification or submit digest mismatch | Detect tampering; invalidate or downgrade affected status | Artifact digests + mutation attempt + verification trace | NOT_MEASURED |
+| T-EXEC-003 | FED-EXEC-001-R003 | EXEC | Execution interface and controlled failure point available | Inject failure after partial execution | Apply documented rollback/recovery; no interface is NOT_MEASURED | State snapshots + fault-injection log + trace | NOT_MEASURED |
+| T-EXEC-004 | FED-EXEC-001-R004 | EXEC | Execution interface and scoped authorization available | Reuse authorization outside its target/operation scope | Refuse out-of-scope execution; no interface is NOT_MEASURED | Scope record + request/response + trace | NOT_MEASURED |
 
 ---
 
 ## Frozen Baseline Note
 
-The first 32 rows are copied from the frozen matrix. The ten T-XINV-* rows are proposed experimental additions and are not part of the original specification's test population.
+The first 32 rows are copied from the frozen matrix. The ten R003-cited rows above are not part of the frozen matrix's test population. They are already listed in R003 and are formalized here for execution.
