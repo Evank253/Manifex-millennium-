@@ -13,7 +13,7 @@ Which test design produces more valid, traceable, uncertainty-preserving, reprod
 - Primordial rule: MANIFEX-PRIMORDIAL-001-HUMAN-AUTHORITY-SUPREMACY, blob b7114eaccd9c6e3bb0beaf70f744d7bd9cde52af.
 - Federation implementation baseline: Evank253/Global-Intelligence commit 754fb1ff22da0de58ec4db525f137d09a06ae75a.
 - Runner revision and complete environment metadata: must be captured per execution; do not treat a branch name as an immutable revision.
-- Exact R003 artifact: currently not present in the frozen specification repository inventory; must be supplied/pinned before row-by-row R003 reconciliation.
+- R003 amendment: `Evank253/Manifex-millennium-`, branch `amendment-001-r002`, commit `ea31e0b751702d5412f9fb705e1323a12068a53e`, blob `19b37de08a6a4a55893b2a0dc154044e985b93bc`. It is separate from the frozen `Python-3` baseline.
 
 ## Audit dimensions
 1. Traceability: each test maps to an existing frozen requirement/invariant or a clearly marked proposed requirement.
