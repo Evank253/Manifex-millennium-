@@ -1,0 +1,27 @@
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        git \
+    && rm -rf /var/lib/apt/lists/*
+
+# The runner is pinned by commit, not by a moving branch name.
+# Clone the runner branch with history so the declared commit can be checked out
+# even when it is not the branch tip.
+ARG RUNNER_BRANCH=federation-baseline-runner-001
+ARG RUNNER_COMMIT=9a3d6768b0338203b478afe883ea13c46d7a7578
+
+RUN git clone --single-branch --branch "${RUNNER_BRANCH}" \
+        https://github.com/Evank253/Global-Intelligence.git /work \
+    && git -C /work checkout --detach "${RUNNER_COMMIT}" \
+    && test "$(git -C /work rev-parse HEAD)" = "${RUNNER_COMMIT}"
+
+WORKDIR /work
+
+# Reports are persisted through the host-mounted /evidence directory.
+ENTRYPOINT ["python", "tools/federation_baseline_runner.py"]
+CMD ["--output-dir", "/evidence"]
